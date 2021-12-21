@@ -1,0 +1,96 @@
+<%- include("template/cabecera", {tituloweb:'Detalle de mascota'}) %>
+<div class="container"   >
+    <h1>Detalle mascota</h1>
+    <% if (error) { %>
+  
+     <p>
+           <%= mensaje %>
+     </p>
+     <a href="/mascotas" classs="btn btn-dark btn-block">Volver a Mascotas</a>
+    
+   <% } %>
+
+   <% if (!error) { %>
+    <form id="formularioEditar" data-id="<%= mascota.id %>">
+        <input type="text"
+                class="form-control my-2"
+                name="nombre"
+                id="nombreInput"
+                value="<%= mascota.nombre %>">
+        <input type="text"
+                class="form-control my-2"
+                name="descripcion"
+                id="descripcionInput"
+                value="<%= mascota.descripcion %>">
+        <button class="btn btn-warning btn-sm" type="submit" >
+            Editar
+        </button>
+        <button href="mascotas/<%= mascota.id %>"class="btn btn-danger btn-sm " id="btnEliminar" data-id="<%= mascota.id %>" >                            
+            Eliminar
+        </button>
+    </form>
+    <hr/>
+    
+   <% } %>
+</div>
+
+   
+<%- include("template/footer") %>
+
+<!-- scrpt para eliminar -->
+<script>
+    // onclick vs addEventListener
+    // https://stackoverflow.com/questions/6348494/addeventlistener-vs-onclick#:~:text=Essentially%20onclick%20is%20a%20HTML,(using%20this%20for%20example).
+    
+    const btnEliminar = document.querySelector('#btnEliminar')
+      btnEliminar.addEventListener('click', async() => {
+        console.log(btnEliminar.dataset.id)  
+        try {
+            // https://developer.mozilla.org/es/docs/Web/API/HTMLElement/dataset
+            const data = await fetch(`/mascotas/${btnEliminar.dataset.id}`, {
+              method: 'delete'
+            })
+            const res = await data.json()
+            console.log(res)
+            if(res.estado){
+                window.location.href = '/mascotas'
+            }else{
+                console.log(res)
+            }
+        } catch (error) {
+            console.log(error)
+        }
+      })
+
+    //  script para editar
+      const formularioEditar = document.querySelector('#formularioEditar')
+
+        formularioEditar.addEventListener('submit', async(e) => {
+            e.preventDefault()
+           
+            const nombre = formularioEditar.elements['nombre'].value
+            const descripcion = document.querySelector('#descripcionInput').value
+            const id = formularioEditar.dataset.id
+            console.log(nombre, descripcion, id)
+
+            try {
+                const data = await fetch (`/mascotas/${id}`,{
+                    method: 'put',
+                    headers:{
+                       'Content-Type': 'application/json' 
+                    },
+                    body: JSON.stringify({nombre, descripcion})
+                })
+                const res = await data.json()
+                // console.log(res)
+                if(res.estado){
+                    window.location.href = '/mascotas'
+                }else{
+                    console.log(res)
+                }
+            } catch (error) {
+                console.log(error)
+                
+            }
+        })
+    </script>

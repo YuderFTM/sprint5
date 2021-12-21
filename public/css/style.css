@@ -1,0 +1,84 @@
+.camp{
+    margin:0 auto;
+    margin-top: 20px;
+    padding: 20px;
+    width:80%;
+    background-color: rgba(147, 147, 238, 0.267);
+    border-radius:8px;
+}
+
+.camp_imput{
+    width:100%;
+
+}
+.camp_label{
+    width:50%;
+}
+.contenedores{
+    display: inline-table;
+    width:45%;
+}
+.contenedor{
+    margin-top: 15px;
+    border: 1px  solid rgb(235, 219, 219);
+    border-radius: 25px;
+    background-color: rgba(183, 183, 238, 0.39);
+    width:100%;
+    display:inline-block;
+}
+.col{
+    margin: 15px;
+    margin-left: 70px;
+    font-size:20px;
+    font-weight:bold;
+}
+.col1{
+    height:30px;
+    margin: 15px;
+    margin-left: 10px;
+    font-size:20px;
+    font-weight:bold;
+}
+.imp_camp{
+    height:25px;
+  
+}
+.col2{
+    margin-left: 10px;
+    font-weight:bold;
+    display:inline-flex;
+    width:93%;
+}
+.imp_camp1{
+     height:25px;
+     width:50%;
+}
+.col3{
+    width:50%;
+}
+.but-camp{ 
+    margin: 10px;
+    width:90%;
+    text-align:right;
+    
+}
+/* campeonato */
+.camp1{
+    margin:0 auto;
+    margin-top: 20px;
+    padding: 20px;
+    width:100%;
+    background-color: rgba(147, 147, 238, 0.267);
+    border-radius:8px;
+   height: 700px;
+}
+.title-camp{
+    display:inline-flex;
+
+
+}
+.btn-title{
+    margin-left: 220%;
+    height: 40px;
+    /* width:100px; */
+}
